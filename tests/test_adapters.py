@@ -17,6 +17,7 @@ import adapters  # noqa: E402
 from adapters.claude import ClaudeAdapter  # noqa: E402
 from adapters.codex import CodexAdapter  # noqa: E402
 from adapters.gemini import GeminiAdapter  # noqa: E402
+from adapters.opencode import OpenCodeAdapter  # noqa: E402
 
 FAKES = Path(__file__).resolve().parent / "fakes"
 
@@ -125,6 +126,32 @@ class Gemini(unittest.TestCase):
         self.assertEqual("after a log line", o.report)
 
 
+class OpenCode(unittest.TestCase):
+    def setUp(self):
+        self.a = OpenCodeAdapter({"name": "oc", "model": "anthropic/claude-sonnet-5-5", "args": ["--auto"]}, Path("/tmp"))
+
+    def test_command_and_no_resume(self):
+        argv, stdin = self.a.command({}, resume=False, text="brief")
+        self.assertEqual(["opencode", "run", "--model", "anthropic/claude-sonnet-5-5", "--auto", "brief"], argv)
+        self.assertIsNone(stdin)
+        self.assertFalse(self.a.can_resume)
+        argv_res, stdin_res = self.a.command({"session": "ses_1"}, resume=True, text="more")
+        self.assertEqual(["opencode", "run", "--model", "anthropic/claude-sonnet-5-5", "--auto", "more"], argv_res)
+        self.assertIsNone(stdin_res)
+
+    def test_parse(self):
+        o = self.a.parse("all done\n", "", 0)
+        self.assertEqual(("done", "all done"), (o.status, o.report))
+        o = self.a.parse("", "Rate limit exceeded (429)", 1)
+        self.assertEqual("limit", o.status)
+        o = self.a.parse("", "provider failed\nbad request", 2)
+        self.assertEqual(("error", "bad request"), (o.status, o.why))
+
+    def test_a_good_report_that_talks_about_limits_is_not_a_limit(self):
+        o = self.a.parse("fixed the rate limit handling in api.py", "", 0)
+        self.assertEqual("done", o.status)
+
+
 class Common(unittest.TestCase):
     def test_subscription_drops_api_keys_api_keeps_them(self):
         with mock.patch.dict(os.environ, {"GEMINI_API_KEY": "k", "HOME": "/h"}):
@@ -175,7 +202,8 @@ class Init(unittest.TestCase):
             first = home.config_path.read_text()
             self.assertEqual(0, main(["init"], home=home))
         cfg = json.loads(first)
-        self.assertEqual({"claude": True, "codex": False, "gemini": False}, {w["name"]: w["enabled"] for w in cfg["workers"]})
+        self.assertEqual({"claude": True, "codex": False, "gemini": False, "opencode": False},
+                         {w["name"]: w["enabled"] for w in cfg["workers"]})
         self.assertEqual("reported", cfg["workers"][0]["windows"])
         self.assertNotIn("secret-value", first)
         self.assertEqual(first, home.config_path.read_text())

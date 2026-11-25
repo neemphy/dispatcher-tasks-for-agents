@@ -185,10 +185,14 @@ reports its usage (Claude Code does), the dispatcher learns real sizes from fini
 | Claude Code | ✅ | ✅ `--resume` | ✅ read from the CLI's output | ✅ start, resume, limits |
 | Codex CLI | ✅ `codex exec --json` | ✅ `codex exec resume` (per its docs) | configured by you | not yet — built from its docs |
 | Gemini CLI | ✅ `gemini --output-format json` | a new run with the last report¹ | configured by you | not yet — built from its docs |
+| OpenCode | ✅ `opencode run` | a new run with the last report² | configured by you | not yet — built from its docs |
 | Other agents | — | — | — | [contributions welcome](CONTRIBUTING.md) |
 
 ¹ Gemini CLI has `--resume`, but its documented JSON output does not include the session id, so the adapter does not
 guess it. A contribution that reads it is welcome.
+
+² OpenCode documents `opencode run --session <id>` and `--format json`, but its official docs do not specify the JSON
+event schema for extracting the session id, so `can_resume` stays `False`. A contribution that reads it is welcome.
 
 ### Other agents — contributions welcome
 

@@ -9,8 +9,9 @@ from adapters.base import Adapter
 from adapters.claude import ClaudeAdapter
 from adapters.codex import CodexAdapter
 from adapters.gemini import GeminiAdapter
+from adapters.opencode import OpenCodeAdapter
 
-ADAPTERS = {"claude": ClaudeAdapter, "codex": CodexAdapter, "gemini": GeminiAdapter}
+ADAPTERS = {"claude": ClaudeAdapter, "codex": CodexAdapter, "gemini": GeminiAdapter, "opencode": OpenCodeAdapter}
 
 
 def get(worker: Dict[str, Any], runs: Path, spawn: Optional[Callable[[Path], None]] = None) -> Adapter:

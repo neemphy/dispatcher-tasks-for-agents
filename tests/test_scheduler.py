@@ -298,6 +298,21 @@ class Related(Base):
         self.assertIn("done: write the parser", second)          # the last report
         self.assertIn("now its docs", second)
 
+    def test_opencode_runs_and_continues_with_a_new_run_and_last_report(self):
+        self.config(worker("opencode"))
+        self.add("a", "write the parser", urgent=True, size="S")
+        self.tick()
+        self.complete()
+        self.add("b", "now its docs", size="S", with_id="a")
+        self.tick()
+        self.complete()
+        first, second = self.calls()
+        self.assertEqual(["run", "write the parser"], first["argv"])
+        self.assertEqual("run", second["argv"][0])
+        self.assertIn("write the parser", second["argv"][-1])
+        self.assertIn("done: write the parser", second["argv"][-1])
+        self.assertIn("now its docs", second["argv"][-1])
+
     def test_a_similar_brief_is_linked_and_logged(self):
         self.config(worker("claude"))
         self.add("a", "Refactor src/parser/lexer.py and src/parser/tokens.py, keep the tests green", urgent=True,
@@ -353,7 +368,7 @@ class AfterALimit(Base):
         self.assertEqual("t", self.home.state()["tasks"]["t-on-gemini"]["continues"])
 
     def test_codex_and_gemini_limits_are_recognised(self):
-        for agent in ("codex", "gemini"):
+        for agent in ("codex", "gemini", "opencode"):
             with self.subTest(agent=agent):
                 self.setUp()
                 self.config(worker(agent, pause_after_limit_minutes=30))

@@ -24,7 +24,7 @@ import adapters
 from adapters.base import LIMIT, RUNNING, Outcome
 from taskdispatch import similar
 from taskdispatch import windows as win
-from taskdispatch.home import Home, iso, write_json
+from taskdispatch.home import SIZES, Home, iso, write_json
 
 CONTINUE_TEXT = ("The previous run of this task stopped at a usage limit. Continue the task from where it stopped; "
                  "finish with the usual final report.")
@@ -115,6 +115,8 @@ class Scheduler:
         before, after = turn.get("before_short"), (outcome.windows.get("short") or {}).get("used")
         if before is None or after is None or after < before or not turn.get("size_name"):
             return                                       # the window reset in between — not a measurement
+        if turn.get("remaining"):
+            return                                       # only the rest of a cut-off run: it would teach a size too small
         data = read_json(self.home.sizes_path, {})
         samples = data.setdefault("_samples", {}).setdefault(turn["size_name"], [])
         samples.append(round(after - before, 1))
@@ -122,6 +124,12 @@ class Scheduler:
         if len(samples) >= 3:
             median = sorted(samples)[len(samples) // 2]
             data[turn["size_name"]] = round(0.5 * self.home.sizes()[turn["size_name"]] + 0.5 * median, 1)
+        # sizes stay in order (S ≤ M ≤ L ≤ XL): a few noisy samples must not make a bigger size look cheaper
+        cur = {**SIZES, **{k: v for k, v in data.items() if k in SIZES}}
+        names = list(SIZES)
+        for lo, hi in zip(names, names[1:]):
+            if cur[hi] < cur[lo]:
+                cur[hi] = data[hi] = cur[lo]
         write_json(self.home.sizes_path, data)
 
     # ------------------------------------------------------------------ who is busy
@@ -336,6 +344,8 @@ class Scheduler:
         size = self.home.sizes()[it["size"]]
         before = views[d["worker"]].short.used if views.get(d["worker"]) and views[d["worker"]].short else None
         turn = {"at": iso(at), "at_ts": at, "size": size, "size_name": it["size"], "status": None, "before_short": before}
+        if it.get("kind") == "continue" or d["mode"] == "move":
+            turn["remaining"] = True        # the rest of a run cut off at a limit: its usage is not what a full task costs
         if d["mode"] in ("new", "move"):
             tid = it["id"] if d["mode"] == "new" else self._unique(f"{d['task']}-on-{d['worker']}", st)
             brief = continue_brief(st["tasks"][d["task"]], it.get("report", "")) if d["mode"] == "move" else it["brief"]

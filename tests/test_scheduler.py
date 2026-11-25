@@ -17,6 +17,7 @@ from unittest import mock
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
+from adapters.base import Outcome  # noqa: E402
 from taskdispatch import runner  # noqa: E402
 from taskdispatch.home import Home, write_json  # noqa: E402
 from taskdispatch.scheduler import Scheduler  # noqa: E402
@@ -332,6 +333,21 @@ class Related(Base):
 
 
 class AfterALimit(Base):
+    def test_the_continued_run_is_marked_as_the_rest_and_not_learned(self):
+        self.config(worker("claude", windows="reported"))
+        self.add("t", urgent=True, size="L", needs="claude")
+        self.tick()
+        self.complete(mode="limit")
+        self.now[0] += H + 60
+        self.reported("claude", 0, 25)
+        with mock.patch.dict(os.environ, {"FAKE_USED": "0.04"}):
+            self.tick()
+            self.complete()
+        turns = self.home.state()["tasks"]["t"]["turns"]
+        self.assertTrue(turns[-1].get("remaining"))
+        learned = json.loads(self.home.sizes_path.read_text()) if self.home.sizes_path.exists() else {}
+        self.assertNotIn("L", learned.get("_samples", {}))
+
     def test_continues_the_same_session_after_the_reset(self):
         self.config(worker("claude", windows="reported"))
         self.add("t", urgent=True, size="S", needs="claude")
@@ -431,6 +447,24 @@ class Windows(Base):
                 self.complete()
         learned = self.home.sizes()["S"]
         self.assertAlmostEqual(0.5 * 3 + 0.5 * 12, learned, delta=0.1)
+
+    def test_the_rest_of_a_run_cut_off_at_a_limit_teaches_nothing(self):
+        self.config(worker("claude", windows="reported"))
+        sch = self.sched()
+        for _ in range(3):
+            sch.calibrate({"size_name": "L", "before_short": 0, "remaining": True},
+                          Outcome("done", windows={"short": {"used": 5}}))
+        self.assertEqual(25.0, self.home.sizes()["L"])          # three tiny «rest of the run» samples are not learned
+
+    def test_learned_sizes_stay_in_order(self):
+        self.config(worker("claude", windows="reported"))
+        sch = self.sched()
+        for _ in range(3):                                       # three noisy L runs used only 2 %
+            sch.calibrate({"size_name": "L", "before_short": 0}, Outcome("done", windows={"short": {"used": 2}}))
+        got = self.home.sizes()
+        self.assertLessEqual(got["S"], got["M"])
+        self.assertLessEqual(got["M"], got["L"])
+        self.assertLessEqual(got["L"], got["XL"])
 
 
 class DryRun(Base):

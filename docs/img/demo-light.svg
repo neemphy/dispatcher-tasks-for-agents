@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" role="img" aria-label="Terminal demo: a task is queued, waits for the window reset, runs and finishes">
+<defs>
+  <clipPath id="win"><rect x="10" y="10" width="880" height="396" rx="14"/></clipPath>
+  <filter id="sh" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#1e1b4b" flood-opacity="0.10"/></filter>
+</defs>
+<style>
+text{font-size:13.5px;white-space:pre}
+.c0{transform-box:fill-box;transform-origin:100% 50%;transform:scaleX(0);animation:c0 17.0s linear infinite}
+@keyframes c0{0.0%{transform:scaleX(1)}2.941%{transform:scaleX(1);animation-timing-function:steps(46,end)}10.062%{transform:scaleX(0)}99.5%{transform:scaleX(0)}99.559%{transform:scaleX(1)}100%{transform:scaleX(1)}}
+.k0{opacity:0;animation:k0 17.0s linear infinite}
+@keyframes k0{0.0%{opacity:0;transform:translateX(0)}2.882%{opacity:0;transform:translateX(0)}2.941%{opacity:1;transform:translateX(0);animation-timing-function:steps(46,end)}10.062%{opacity:1;transform:translateX(372.6px)}14.647%{opacity:1;transform:translateX(372.6px)}14.706%{opacity:0;transform:translateX(372.6px)}100%{opacity:0;transform:translateX(372.6px)}}
+.l1{animation:s1 17.0s linear infinite}
+@keyframes s1{0.0%{opacity:0}14.647%{opacity:0}14.706%{opacity:1}99.5%{opacity:1}99.559%{opacity:0}100%{opacity:0}}
+.c2{transform-box:fill-box;transform-origin:100% 50%;transform:scaleX(0);animation:c2 17.0s linear infinite}
+@keyframes c2{0.0%{transform:scaleX(1)}18.824%{transform:scaleX(1);animation-timing-function:steps(91,end)}32.91%{transform:scaleX(0)}99.5%{transform:scaleX(0)}99.559%{transform:scaleX(1)}100%{transform:scaleX(1)}}
+.k2{opacity:0;animation:k2 17.0s linear infinite}
+@keyframes k2{0.0%{opacity:0;transform:translateX(0)}18.765%{opacity:0;transform:translateX(0)}18.824%{opacity:1;transform:translateX(0);animation-timing-function:steps(91,end)}32.91%{opacity:1;transform:translateX(737.1px)}34.059%{opacity:1;transform:translateX(737.1px)}34.118%{opacity:0;transform:translateX(737.1px)}100%{opacity:0;transform:translateX(737.1px)}}
+.l3{animation:s3 17.0s linear infinite}
+@keyframes s3{0.0%{opacity:0}34.059%{opacity:0}34.118%{opacity:1}99.5%{opacity:1}99.559%{opacity:0}100%{opacity:0}}
+.c4{transform-box:fill-box;transform-origin:100% 50%;transform:scaleX(0);animation:c4 17.0s linear infinite}
+@keyframes c4{0.0%{transform:scaleX(1)}38.824%{transform:scaleX(1);animation-timing-function:steps(34,end)}44.087%{transform:scaleX(0)}99.5%{transform:scaleX(0)}99.559%{transform:scaleX(1)}100%{transform:scaleX(1)}}
+.k4{opacity:0;animation:k4 17.0s linear infinite}
+@keyframes k4{0.0%{opacity:0;transform:translateX(0)}38.765%{opacity:0;transform:translateX(0)}38.824%{opacity:1;transform:translateX(0);animation-timing-function:steps(34,end)}44.087%{opacity:1;transform:translateX(275.4px)}47.0%{opacity:1;transform:translateX(275.4px)}47.059%{opacity:0;transform:translateX(275.4px)}100%{opacity:0;transform:translateX(275.4px)}}
+.l5{animation:s5 17.0s linear infinite}
+@keyframes s5{0.0%{opacity:0}47.0%{opacity:0}47.059%{opacity:1}99.5%{opacity:1}99.559%{opacity:0}100%{opacity:0}}
+.l6{animation:s6 17.0s linear infinite}
+@keyframes s6{0.0%{opacity:0}55.235%{opacity:0}55.294%{opacity:1}99.5%{opacity:1}99.559%{opacity:0}100%{opacity:0}}
+.c7{transform-box:fill-box;transform-origin:100% 50%;transform:scaleX(0);animation:c7 17.0s linear infinite}
+@keyframes c7{0.0%{transform:scaleX(1)}60.0%{transform:scaleX(1);animation-timing-function:steps(28,end)}64.334%{transform:scaleX(0)}99.5%{transform:scaleX(0)}99.559%{transform:scaleX(1)}100%{transform:scaleX(1)}}
+.k7{opacity:0;animation:k7 17.0s linear infinite}
+@keyframes k7{0.0%{opacity:0;transform:translateX(0)}59.941%{opacity:0;transform:translateX(0)}60.0%{opacity:1;transform:translateX(0);animation-timing-function:steps(28,end)}64.334%{opacity:1;transform:translateX(226.8px)}67.0%{opacity:1;transform:translateX(226.8px)}67.059%{opacity:0;transform:translateX(226.8px)}100%{opacity:0;transform:translateX(226.8px)}}
+.l8{animation:s8 17.0s linear infinite}
+@keyframes s8{0.0%{opacity:0}67.0%{opacity:0}67.059%{opacity:1}99.5%{opacity:1}99.559%{opacity:0}100%{opacity:0}}
+.c9{transform-box:fill-box;transform-origin:100% 50%;transform:scaleX(0);animation:c9 17.0s linear infinite}
+@keyframes c9{0.0%{transform:scaleX(1)}72.941%{transform:scaleX(1);animation-timing-function:steps(52,end)}80.991%{transform:scaleX(0)}99.5%{transform:scaleX(0)}99.559%{transform:scaleX(1)}100%{transform:scaleX(1)}}
+.k9{opacity:0;animation:k9 17.0s linear infinite}
+@keyframes k9{0.0%{opacity:0;transform:translateX(0)}72.882%{opacity:0;transform:translateX(0)}72.941%{opacity:1;transform:translateX(0);animation-timing-function:steps(52,end)}80.991%{opacity:1;transform:translateX(421.2px)}82.294%{opacity:1;transform:translateX(421.2px)}82.353%{opacity:0;transform:translateX(421.2px)}100%{opacity:0;transform:translateX(421.2px)}}
+.l10{animation:s10 17.0s linear infinite}
+@keyframes s10{0.0%{opacity:0}82.294%{opacity:0}82.353%{opacity:1}99.5%{opacity:1}99.559%{opacity:0}100%{opacity:0}}
+.l11{animation:s11 17.0s linear infinite}
+@keyframes s11{0.0%{opacity:0}84.647%{opacity:0}84.706%{opacity:1}99.5%{opacity:1}99.559%{opacity:0}100%{opacity:0}}
+.l12{animation:s12 17.0s linear infinite}
+@keyframes s12{0.0%{opacity:0}88.176%{opacity:0}88.235%{opacity:1}99.5%{opacity:1}99.559%{opacity:0}100%{opacity:0}}
+.b{animation:blink 1s steps(1,end) infinite}
+@keyframes blink{0%{opacity:1}50%{opacity:0}}
+.scene{animation:fade 17.0s linear infinite}
+@keyframes fade{0.0%{opacity:1}97.0%{opacity:1}99.0%{opacity:0}100%{opacity:0}}
+.t1{animation:t1 17.0s linear infinite}.t2{opacity:1;animation:t2 17.0s linear infinite}
+@keyframes t1{0.0%{opacity:1}55.235%{opacity:1}55.294%{opacity:0}100%{opacity:0}}
+@keyframes t2{0.0%{opacity:0}55.235%{opacity:0}55.294%{opacity:1}100%{opacity:1}}
+@media (prefers-reduced-motion:reduce){*{animation:none !important}.b{opacity:0}.scene{opacity:1}.t1{opacity:0}}
+</style>
+<rect x="10" y="10" width="880" height="396" rx="14" fill="#fbfbfe" stroke="#e4e4ee" filter="url(#sh)"/>
+<g clip-path="url(#win)"><rect x="10" y="10" width="880" height="40" fill="#f0eff8"/><rect x="10" y="50" width="880" height="1" fill="#e4e4ee"/></g>
+<circle cx="34" cy="35" r="6" fill="#fca5a5"/><circle cx="54" cy="35" r="6" fill="#fcd34d"/><circle cx="74" cy="35" r="6" fill="#86efac"/>
+<text x="450" y="40" text-anchor="middle" fill="#6b6b7b" font-size="12.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">agent — dispatcher demo</text>
+<text class="t1" x="866" y="40" text-anchor="end" fill="#6b6b7b" font-size="12.5">clock 11:20</text>
+<text class="t2" x="866" y="40" text-anchor="end" fill="#b45309" font-size="12.5" font-weight="700" opacity="0">clock 14:00</text>
+<g class="scene">
+<g class="l0"><text x="34.0" y="88" fill="#0284c7" textLength="40.5" lengthAdjust="spacing">you ›</text><text x="82.6" y="88" fill="#1f1d2e" textLength="324.0" lengthAdjust="spacing">Refactor the payment module, not urgent.</text><rect class="c0" x="32" y="73" width="376.6" height="21" fill="#fbfbfe"/><g class="k0"><rect class="b" x="32" y="74" width="8" height="18" fill="#6366f1"/></g></g>
+<g class="l1"><text x="34.0" y="111" fill="#6b6b7b" textLength="364.5" lengthAdjust="spacing"># size L, normal urgency: put it in the queue</text></g>
+<g class="l2"><text x="34.0" y="134" fill="#6366f1" textLength="8.1" lengthAdjust="spacing">$</text><text x="50.2" y="134" fill="#1f1d2e" textLength="720.9" lengthAdjust="spacing">python3 dispatcher.py queue add refactor-payments --brief-file brief.md --size L --normal</text><rect class="c2" x="32" y="119" width="741.1" height="21" fill="#fbfbfe"/><g class="k2"><rect class="b" x="32" y="120" width="8" height="18" fill="#6366f1"/></g></g>
+<g class="l3"><text x="34.0" y="157" fill="#0284c7" textLength="48.6" lengthAdjust="spacing" font-weight="700">queued</text><text x="106.9" y="157" fill="#1f1d2e" textLength="283.5" lengthAdjust="spacing">refactor-payments  (size L, normal)</text></g>
+<g class="l4"><text x="34.0" y="180" fill="#6366f1" textLength="8.1" lengthAdjust="spacing">$</text><text x="50.2" y="180" fill="#1f1d2e" textLength="259.2" lengthAdjust="spacing">python3 dispatcher.py queue list</text><rect class="c4" x="32" y="165" width="279.4" height="21" fill="#fbfbfe"/><g class="k4"><rect class="b" x="32" y="166" width="8" height="18" fill="#6366f1"/></g></g>
+<g class="l5"><text x="34.0" y="203" fill="#b45309" textLength="56.7" lengthAdjust="spacing" font-weight="700">waiting</text><text x="106.9" y="203" fill="#1f1d2e" textLength="575.1" lengthAdjust="spacing">refactor-payments  claude: short window 85 % — waits for reset at 14:00</text></g>
+<g class="l6"><text x="34.0" y="226" fill="#b45309" textLength="218.7" lengthAdjust="spacing" font-weight="700">… 14:00 — the window resets</text></g>
+<g class="l7"><text x="34.0" y="249" fill="#6366f1" textLength="8.1" lengthAdjust="spacing">$</text><text x="50.2" y="249" fill="#1f1d2e" textLength="210.6" lengthAdjust="spacing">python3 dispatcher.py tick</text><rect class="c7" x="32" y="234" width="230.8" height="21" fill="#fbfbfe"/><g class="k7"><rect class="b" x="32" y="235" width="8" height="18" fill="#6366f1"/></g></g>
+<g class="l8"><text x="34.0" y="272" fill="#6d5ae6" textLength="56.7" lengthAdjust="spacing" font-weight="700">running</text><text x="106.9" y="272" fill="#1f1d2e" textLength="445.5" lengthAdjust="spacing">refactor-payments  claude: window is free, starting now</text></g>
+<g class="l9"><text x="34.0" y="295" fill="#6366f1" textLength="8.1" lengthAdjust="spacing">$</text><text x="50.2" y="295" fill="#1f1d2e" textLength="405.0" lengthAdjust="spacing">python3 dispatcher.py queue show refactor-payments</text><rect class="c9" x="32" y="280" width="425.2" height="21" fill="#fbfbfe"/><g class="k9"><rect class="b" x="32" y="281" width="8" height="18" fill="#6366f1"/></g></g>
+<g class="l10"><text x="34.0" y="318" fill="#059669" textLength="32.4" lengthAdjust="spacing" font-weight="700">done</text><text x="106.9" y="318" fill="#1f1d2e" textLength="137.7" lengthAdjust="spacing">refactor-payments</text></g>
+<g class="l11"><text x="34.0" y="341" fill="#6b6b7b" textLength="243.0" lengthAdjust="spacing">report: 0 errors, tests passed</text></g>
+<g class="l12"><text x="34.0" y="364" fill="#6366f1" textLength="8.1" lengthAdjust="spacing">$</text><rect class="b k12" x="50.2" y="350" width="8" height="18" fill="#6366f1"/></g>
+</g>
+</svg>

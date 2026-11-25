@@ -11,6 +11,11 @@ Works with Claude Code, Codex CLI and Gemini CLI. Plain Python 3.9+, no dependen
   <img alt="A person asks for a task; a small dispatcher robot keeps a queue of task cards with sizes and an urgent tag; one agent desk is working, one waits for its reset, one is free" src="docs/img/hero-light.svg">
 </picture>
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/img/demo-dark.svg">
+  <img alt="Terminal demo: a person asks an agent to refactor the payment module; the agent queues it with queue add, queue list shows it waiting for the window reset at 14:00, tick starts it, and queue show reports done with 0 errors and tests passed" src="docs/img/demo-light.svg">
+</picture>
+
 > Status: in development. Claude Code support is complete; Codex CLI and Gemini CLI adapters follow their official
 > docs and are marked below as verified or not.
 

@@ -147,8 +147,19 @@ python3 dispatcher.py tick --dry-run    # what the next step would do
 `--brief "text"` works instead of `--brief-file`; `--needs <worker>` pins a task to one agent; `--cwd` is the folder the
 agent works in (default: where you run the command); `--dry-run` records a test entry that `tick` only describes.
 
-Sizes are rough shares of a usage window: **S** ≈ 3 %, **M** ≈ 10 %, **L** ≈ 25 %, **XL** ≈ 50 %. When the agent
-reports its usage (Claude Code does), the dispatcher learns real sizes from finished tasks.
+Sizes are rough shares of a usage window: **S** ≈ 3 %, **M** ≈ 10 %, **L** ≈ 25 %, **XL** ≈ 50 %. These are only the
+starting guesses. When the agent reports its usage (Claude Code does), the dispatcher **learns real sizes by itself**:
+
+- after every run it notes how much of the window that run really used, under that run's own size — a follow-up added
+  with `--with` counts as its own size, not as part of the first task;
+- once a size has three measurements, the table moves halfway toward the median (noise from your own work in the same
+  window is smoothed out);
+- runs that don't show what a task costs are skipped: a window that reset mid-run, or the rest of a run that was cut off
+  at a limit;
+- sizes stay in order (S ≤ M ≤ L ≤ XL), so a few odd runs can't make a big task look cheap.
+
+So if your "medium" tasks really take 13 % of a window, after a few of them the dispatcher plans with 13 %, and it stops
+squeezing a task into a window it won't fit.
 
 ## Configuration
 

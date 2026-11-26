@@ -8,7 +8,7 @@ Works with Claude Code, Codex CLI and Gemini CLI. Plain Python 3.9+, no dependen
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/img/hero-dark.svg">
-  <img alt="A person asks for a task; a small dispatcher robot keeps a queue of task cards with sizes and an urgent tag; one agent desk is working, one waits for its reset, one is free" src="docs/img/hero-light.svg">
+  <img alt="An animated story: a person asks in a chat bubble to make the login page prettier, no rush; the dispatcher robot turns it into a task card marked L and not urgent; the card waits in the queue while the agent's usage bar is almost full and a clock turns; the bar resets, the card goes to the agent, the agent works, a green check says done, and the person gets a notification" src="docs/img/hero-light.svg">
 </picture>
 
 > Status: in development. Claude Code support is complete; Codex CLI and Gemini CLI adapters follow their official
